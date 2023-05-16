@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+        }
+        .container {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 4rem auto;
+            padding: 2rem 3rem 3rem;
+            max-width: 500px;
+            background: #ff6666;
+            color: #fff;
+            box-shadow: 5px 5px 0px 0px rgba(100, 100, 100, 0.1);
+        }
+        .title {
+            font-weight: normal;
+            font-size: 2.6rem;
+            letter-spacing: 0.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .title span {
+            display: block;
+            font-size: 0.8rem;
+            margin: 0.2rem 0 0.7rem 3px;
+        }
+        .task-list {
+            margin-top: 2.6rem;
+            list-style: none;
+        }
+        .task-list li {
+            display: flex;
+            margin: 0 -3rem 4px;
+            padding: 1.1rem 3rem;
+            justify-content: space-between;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease;
+            transform-origin: top left;
+        }
+        .fall {
+            transform: rotate(10deg);
+            opacity: 0;
+        }
+        .task-list .actions {
+            flex-shrink: 0;
+            padding-left: 0.7em;
+        }
+        .task-list .btn-action {
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: #fff;
+        }
+        input[type="checkbox"] {
+            cursor: pointer;
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+        .task-list input[type="checkbox"] {
+            position: relative;
+            top: 0.3rem;
+        }
+        .task-list .label {
+            transition: opacity 0.2 linear;
+        }
+        .task-list .done .label {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+        .filter-wrapper {
+            margin-top: 1em;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .form {
+            margin-top: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .form label {
+            min-width: 100%;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        .form input {
+            flex-grow: 1;
+            border: none;
+            background: #f7f1f1;
+            padding: 0 1.5em;
+            font-size: initial;
+        }
+        .form button {
+            padding: 0 1.3rem;
+            border: none;
+            background: #ff6666;
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-left: 5px;
+            cursor: pointer;
+            transition: background 0.2s ease-out;
+        }
+        .form button:hover {
+            filter: brightness(110%);
+        }
+        .form input,
+        .form button {
+            height: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Todo List
+            <span>Get one item done at a time</span>
+        </h1>
+        <ul class="task-list">
+            <li>
+                <span class="label">Learn JS</span>
+                <div class="acctions">
+                    <input type="checkbox" class="btn-action btn-action-done">
+                    <button class="btn-action btn-action-delete">☒</button>
+                </div>
+            </li>
+            <li>
+                <span class="label">Code a Todo List</span>
+                <div class="acctions">
+                    <input type="checkbox" class="btn-action btn-action-done">
+                    <button class="btn-action btn-action-delete">☒</button>
+                </div>
+            </li>
+        </ul>
+        <div class="filter-wrapper">
+            <label for="filter" class="filter-label">Show incompleted only</label>
+            <input type="checkbox" id="filter">
+        </div>
+        <form action="#" class="form">
+            <label for="newitem">Add to the todo list</label>
+            <input type="text" id="newitem">
+            <button type="submit">Add Item</button>
+        </form>
+    </div>
+
+    <script>
+        //Select DOM
+        const todoList = document.querySelector(".task-list");
+        const filterOption = document.querySelector("#filter");
+        const form = document.querySelector(".form");
+        const taskInput = document.querySelector("#newitem");
+
+        function markDone(todoLi) {
+            todoLi.classList.toggle("done")
+        }
+
+        function removeTask(todoLi) {
+            todoLi.classList.add("fall");
+            todoLi.addEventListener("transitionend", () => todoLi.remove());
+        }
+
+        function filterTasks(hideComletedTasks) {
+            todoList.querySelectorAll("li").forEach((todoLi) => {
+                if (todoLi.classList.contains("done")) {
+                    todoLi.style.display = hideComletedTasks ? "none" : "flex";
+                }
+            })
+        }
+        //Mark done & Remove a task
+        todoList.addEventListener("click", (e) => {
+            const element = e.target;
+            if (element.classList[1] === 'btn-action-done') {
+                markDone(element.parentNode.parentNode)
+            } else if (element.classList[1] === 'btn-action-delete') {
+                removeTask(element.parentNode.parentNode)
+            }
+        })
+        //filter tasks
+
+        filterOption.addEventListener("click", (e) => {
+            filterTasks(e.target.checked);
+        })
+        //Add a new task
+        function addTask(taskLabel) {
+            const todoLi = document.createElement("li");
+            const labelSpan = document.createElement("span");
+            labelSpan.className = "label";
+            labelSpan.textContent = taskLabel;
+            todoLi.appendChild(labelSpan);
+
+            const divActions = document.createElement("div");
+            divActions.className = "actions";
+            divActions.innerHTML = `<input type="checkbox" class="btn-action btn-action-done">
+                    <button class="btn-action btn-action-delete">☒</button>`;
+            todoLi.appendChild(divActions);
+
+            todoList.appendChild(todoLi);
+        }
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const taskLabel = taskInput.value.trim();
+            if (taskLabel) {
+                addTask(taskLabel);
+                taskInput.value = "";
+            }
+        })
+
+    </script>
+</body>
+</html>

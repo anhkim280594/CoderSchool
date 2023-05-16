@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        span {
+            font-size: 6rem;
+            font-weight: bold;
+        }
+        button {
+            padding: 5px 10px;
+            margin: 10px 20px;
+            border-radius: 5px;
+            background: transparent;
+            cursor: pointer;
+        }
+        button:hover {
+            color: white;
+            background: rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body style="text-align: center;">
+    <div>
+        <h1>
+            Counter
+        </h1>
+        <span id="Counter">0</span>
+        <div>
+            <button id="btn-decrease">DECREASE</button>
+            <button id="btn-reset">RESET</button>
+            <button id="btn-increase">INCREASE</button>
+        </div>
+    </div>
+
+    <script>
+        const value = document.getElementById("Counter");
+        const btndecrease = document.getElementById("btn-decrease");
+        const btnreset = document.getElementById("btn-reset");
+        const btnincrease = document.getElementById("btn-increase");
+
+        let count = 0;
+        function updateValue (){
+            value.textContent = count;
+            if (count > 0){
+                value.style.color = "green";
+            }if (count < 0){
+                value.style.color = "red";
+            }
+            if (count === 0){
+                value.style.color = "black";
+            }
+        }
+
+        btndecrease.addEventListener("click", () => {
+            count--;
+            updateValue();
+        })
+        btnreset.addEventListener("click", () => {
+            count = 0;
+            updateValue();
+        })
+        btnincrease.addEventListener("click", () => {
+            count++;
+            updateValue();
+        })
+    </script>
+</body>
+
+</html>

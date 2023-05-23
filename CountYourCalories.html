@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+// 		function totalKcal(arr) {
+// 	let result = 0;
+// 	let sum = 0;
+// 	for (let i = 0; i < arr.length; i++) {
+// 		sum += arr[i];
+//   }
+//      result = (sum - 14000) / 7700
+
+// 	if (result < 0 ){
+// 			return "meaning you will lose" + result + "kg"
+// 	}
+// 	if (result > 0){
+// 			return "that means you will gain" + result +"kg"
+// 	}
+// 	else{
+// 			return "you don't gain weight"
+// 	}
+// }
+// console.log(totalKcal([2000, 2000, 2000, 2000, 2000, 2000, 2000]))
+
+function totalPrice(arr){
+	const items = [{
+			name: "table",
+			price: 100000,
+			currency: "VND"
+		},
+		{
+			name: "microwave",
+			price: 700000,
+			currency: "VND"
+		},
+		{
+			name: "sofa",
+			price: 500000,
+			currency: "VND"
+		}
+
+]
+let total = 0;
+
+	for (let i = 0 ; i < items.length; i++){
+		total += items[i].price;
+	}
+ return "should return" + total
+}
+
+console.log (totalPrice(items));
+
+</script>
+
+
+</body>
+</html>

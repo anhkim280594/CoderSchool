@@ -75,14 +75,15 @@
         }
 
         .container-main {
+            width: 95%;
             display: flex;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .main-items {
-            width: 25%;
-            height: 520px;
-            flex-wrap: wrap;
+            width: 23.5%;
+            height: 550px;
             background-color: #fff;
             border-radius: 5px;
             transition: all 0.3s ease;
@@ -143,7 +144,7 @@
             opacity: 0;
         }
 
-        @media only screen and (max-width: 700px) {
+        @media only screen and (max-width: 1200px) {
             .main-items {
                 width: 45%;
             }
@@ -213,8 +214,6 @@
             span.appendChild(document.createTextNode(newItem));
             li.appendChild(span);
             ul.appendChild(li);
-
-
             const divActions = document.createElement("button");
             divActions.className = "btn-action btn-action-delete";
             divActions.innerHTML = `✕`;

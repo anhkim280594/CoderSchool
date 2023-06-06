@@ -28,34 +28,33 @@
 // }
 // console.log(totalKcal([2000, 2000, 2000, 2000, 2000, 2000, 2000]))
 
-function totalPrice(arr){
-	const items = [{
-			name: "table",
-			price: 100000,
-			currency: "VND"
-		},
-		{
-			name: "microwave",
-			price: 700000,
-			currency: "VND"
-		},
-		{
-			name: "sofa",
-			price: 500000,
-			currency: "VND"
-		}
+const items = [{
+		name: "table",
+		price: 100000,
+		currency: "VND"
+	},
+	{
+		name: "microwave",
+		price: 700000,
+		currency: "VND"
+	},
+	{
+		name: "sofa",
+		price: 500000,
+		currency: "VND"
+	}
 
 ]
+function totalPrice(arr){
 let total = 0;
 
 	for (let i = 0 ; i < items.length; i++){
 		total += items[i].price;
 	}
- return "should return" + total
+ return "should return " + total
 }
 
 console.log (totalPrice(items));
-
 </script>
 
 

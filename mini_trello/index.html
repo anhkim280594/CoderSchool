@@ -137,16 +137,17 @@
             cursor: pointer;
             color: red;
         }
-        .fall{
+
+        .fall {
             transform: rotate(10deg);
             opacity: 0;
         }
+
         @media only screen and (max-width: 700px) {
             .main-items {
                 width: 45%;
             }
         }
-        
     </style>
 </head>
 
@@ -163,7 +164,7 @@
                     <p>From CoderSchool with love</p>
                 </div>
             </div>
-           
+
             <form action="#" class="form">
                 <input type="text" id="newItem" placeholder="Add task">
                 <button type="button" onclick="addItem()">+</button>
@@ -175,7 +176,7 @@
                     Backlog
                 </p>
                 <ul id="task-list">
-                    
+
                 </ul>
 
             </div>
@@ -201,7 +202,7 @@
     </div>
 
     <script>
-       
+
         const todoList = document.querySelector(".task-list");
         const targetItem = document.querySelector(".btn-action-delete")
         function addItem() {
@@ -212,30 +213,18 @@
             span.appendChild(document.createTextNode(newItem));
             li.appendChild(span);
             ul.appendChild(li);
-      
+
 
             const divActions = document.createElement("button");
             divActions.className = "btn-action btn-action-delete";
             divActions.innerHTML = `✕`;
             divActions.setAttribute("onclick", "removeTask()");
             li.appendChild(divActions);
-
-
         }
-
-        
-
         function removeTask() {
             const text = event.currentTarget.parentNode;
             text.parentNode.removeChild(text)
-
-            
         }
-        
-        
-      
-
-       
     </script>
 </body>
 
